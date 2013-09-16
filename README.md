@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-trying again
+Makes it a little easier to keep my configuration from pc to pc
 
 ##Installation:
 To install, clone it somewhere. I use ~/code/dotfiles
