@@ -3,10 +3,14 @@ dotfiles
 
 trying again
 
-to install:
+##Installation:
+To install, clone it somewhere. I use ~/code/dotfiles
+	cd ~/code/dotfiles
+	git submodule init
+	git submodule update
+	ln -s ~/code/dotfiles/vimrc ~/.vimrc
+	ln -s ~/code/dotfiles/.vim ~/.vim
 
-     ln -s ~/code/dotfiles/vimrc ~/.vimrc
-     ln -s ~/code/dotfiles/.vim ~/.vim
-     cd ~/code/dotfiles
-     git submodule init
-     git submodule update
+open up vim
+press enter a few times then enter :BundleInstall
+exit vim
