@@ -15,5 +15,14 @@ open up vim
 press enter a few times then enter :BundleInstall 
 then exit vim
 
+in order to use command-t one of the vim plugins I have for browsing files quickly you must install ruby
+
+     sudo apt-get install ruby-dev ruby
+     cd ~/code/dotfiles/.vim/bundle/Command-T/ruby/command-t
+     ruby extconf.rb
+     make
+
+then thats it
+
 #####For git
      ln -s ~/code/ditfiles/gitconfig ~/.gitconfig
