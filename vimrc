@@ -62,6 +62,7 @@ set showcmd
 set showmatch 
 set sidescroll=1
 set sidescrolloff=10
+set shell=bash
 set smartcase			" ignore case if search is all lowercase else case sensitive
 set smarttab
 set tabstop=4 			" tab = 4 spaces
@@ -71,7 +72,7 @@ set textwidth=80
 set title
 set visualbell
 set wildmode=full
-set wrap
+set nowrap
 let mapleader = ","
 let maplocalleader = "\\"
 syntax on
@@ -123,6 +124,7 @@ map <leader>{ A /*{{{*/<esc>
 map <leader>} A /*}}}*/<esc>
 map <leader>d :w ~diff % -<cr>		"Show diff of file
 map <leader>kf gg=G``zz
+map <leader>kw :%s/\s\+$//<cr>
 map <leader>m <c-w><right>
 map <leader>n <c-w><left>
 map <leader><tab> :Sscratch<cr>
