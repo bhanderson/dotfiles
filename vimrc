@@ -30,7 +30,7 @@ Bundle 'vim-scripts/Wombat'
 Bundle 'flazz/vim-colorschemes'
 Bundle 'majutsushi/tagbar'
 Bundle 'Raimondi/delimitMate'
-Bundle 'scrooloose/syntastic'
+"Bundle 'scrooloose/syntastic'
 Bundle 'wincent/Command-T'
 
 
@@ -49,8 +49,8 @@ set hlsearch
 set ignorecase
 set incsearch
 set laststatus=2
-set list
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:‿
+set list
 set mouse=a
 set nobackup
 set noerrorbells
@@ -75,17 +75,18 @@ set wildmode=full
 set nowrap
 let mapleader = ","
 let maplocalleader = "\\"
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 syntax on
 "set background=dark
 colorscheme molokai
-highlight ColorColumn ctermbg=0 guibg=black
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 highlight BadWhitespace ctermbg=0 guibg=red
 
 " Display tabs at the beginning of a line in Python mode as bad.
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 " Make trailing whitespace be flagged as bad.
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp match BadWhitespace /\s\+$/
-
 
 au BufWinEnter * silent! loadview
 au BufWinLeave * silent! mkview
@@ -119,7 +120,10 @@ inoremap {<CR> {<CR>}<Esc>O
 inoremap { {}<Left>
 map <c-o> :NERDTreeToggle<cr>
 map <f1> <esc>
-map <f3> :set hlsearch!<cr>
+nmap <f3> :set hlsearch!<cr>
+nmap <f6> :YcmDiags<cr>
+nmap <f7> :set spell!<cr>
+nmap <f8> :TagbarToggle<cr>
 map <leader>{ A /*{{{*/<esc>
 map <leader>} A /*}}}*/<esc>
 map <leader>d :w ~diff % -<cr>		"Show diff of file
@@ -135,15 +139,14 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 map <space> *N
-nmap <F8> :TagbarToggle<cr>
 nnoremap <leader>! :!
-nnoremap <leader>q :mksession! ~/.session.vim<CR>:qa<CR>
+nnoremap <leader>q :mksession! ~/Session.vim<CR>:qa<CR>
 nnoremap <leader>s vip:!sort<cr>
 nnoremap m k
 nnoremap / /\v
-noremap <f7> :set spell!<cr>
 noremap j gj
 noremap k gk
+nnoremap ; :
 vnoremap < <gv
 vnoremap > >gv
 vnoremap <leader>s :!sort<cr>
