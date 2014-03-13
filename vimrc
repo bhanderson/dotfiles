@@ -16,19 +16,21 @@ Bundle 'vim-scripts/scratch.vim'
 Bundle 'vim-scripts/Wombat'
 Bundle 'wincent/Command-T'
 
-
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp match BadWhitespace /\s\+$/
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 au BufWritePost .vimrc so ~/.vimrc "reload .vimrc on every save
-au Syntax * RainbowParenthesesLoadBraces
+au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
-au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadChevrons
 au VimResized * exe "normal! \<c-w>="
 
 call matchadd('ColorColumn', '\%81v', 100)
 
 colorscheme molokai
+
+filetype plugin on
 
 highlight BadWhitespace ctermbg=0 guibg=red
 highlight ColorColumn ctermbg=magenta
@@ -42,11 +44,12 @@ iabbrev (r) ®
 iabbrev tflip (╯°□°）╯︵ ┻━┻)
 iabbrev (tm) ™
 
-imap {<CR> {<CR>}<Esc>O
-
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' " compilation flags for ycm
 let mapleader = ","		" set comma to leader
 let maplocalleader = "\\" " keep backslash as a localleader
+
+imap {<CR> {<CR>}<Esc>O
+imap <f1> <esc>
 
 map ; :
 map <c-o> :NERDTreeToggle<cr>
@@ -87,6 +90,7 @@ set laststatus=2		" use two lines for command
 set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮,trail:·,nbsp:‿ " show these hidden characters
 set list				" show the characters above
 set nobackup			" do not use a backup file
+set nocompatible
 set noerrorbells		" dont ding at me
 set noswapfile			" dont use a swap file
 set nowrap
