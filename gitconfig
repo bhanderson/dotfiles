@@ -16,4 +16,4 @@
 [apply]
 	whitespace = fix
 [credential]
-	helper = cache --tieout=3600
+	helper = cache --timeout=3600
