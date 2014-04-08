@@ -6,15 +6,10 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'majutsushi/tagbar'
-Bundle 'mrtazz/molokai.vim'
 Bundle 'msanders/snipmate.vim'
-Bundle 'Raimondi/delimitMate'
 Bundle 'scrooloose/nerdtree'
-"Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-abolish'
-Bundle 'vim-scripts/scratch.vim'
-Bundle 'vim-scripts/Wombat'
 Bundle 'wincent/Command-T'
+Bundle 'Valloric/YouCompleteMe'
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp match BadWhitespace /\s\+$/
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
@@ -23,7 +18,6 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-au Syntax * RainbowParenthesesLoadChevrons
 au VimResized * exe "normal! \<c-w>="
 
 call matchadd('ColorColumn', '\%81v', 100)
@@ -44,9 +38,11 @@ iabbrev (r) ®
 iabbrev tflip (╯°□°）╯︵ ┻━┻)
 iabbrev (tm) ™
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py' " compilation flags for ycm
 let mapleader = ","		" set comma to leader
 let maplocalleader = "\\" " keep backslash as a localleader
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 imap {<CR> {<CR>}<Esc>O
 imap <f1> <esc>
@@ -78,10 +74,11 @@ noremap k gk
 
 set autochdir
 set autoindent
+set completeopt-=preview
 set clipboard=unnamed	" set the clipboard to linux
 set encoding=utf-8		" use utf-8 as the encoding
 set fileformat=unix		" use unix style line endings
-set foldmethod=manual	" I will say where to fold
+set foldmethod=indent	" 
 set history=50			" keep 50 commands in history"
 set hlsearch			" highlight search values"
 set ignorecase			" with smartcase

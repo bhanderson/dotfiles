@@ -15,3 +15,5 @@
 	default = matching
 [apply]
 	whitespace = fix
+[credential]
+	helper = cache --tieout=3600
