@@ -3,21 +3,17 @@ call vundle#rc()
 " Bundles
 Bundle 'flazz/vim-colorschemes'
 Bundle 'gmarik/vundle'
-Bundle 'kien/rainbow_parentheses.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'majutsushi/tagbar'
 Bundle 'msanders/snipmate.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'wincent/Command-T'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'luochen1990/rainbow'
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h,*.cpp match BadWhitespace /\s\+$/
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 au BufWritePost .vimrc so ~/.vimrc "reload .vimrc on every save
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
 au VimResized * exe "normal! \<c-w>="
 
 call matchadd('ColorColumn', '\%81v', 100)
@@ -43,6 +39,7 @@ let maplocalleader = "\\" " keep backslash as a localleader
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:clang_library_path = '/usr/lib/llvm-3.4/lib'
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:rainbow_active = 1
 
 imap {<CR> {<CR>}<Esc>O
 imap <f1> <esc>
@@ -78,7 +75,7 @@ set completeopt-=preview
 set clipboard=unnamed	" set the clipboard to linux
 set encoding=utf-8		" use utf-8 as the encoding
 set fileformat=unix		" use unix style line endings
-set foldmethod=indent	" 
+set foldmethod=syntax
 set history=50			" keep 50 commands in history"
 set hlsearch			" highlight search values"
 set ignorecase			" with smartcase
@@ -90,10 +87,9 @@ set nobackup			" do not use a backup file
 set nocompatible
 set noerrorbells		" dont ding at me
 set noswapfile			" dont use a swap file
-set nowrap
 set nowrap				" dont wrap text in the window
 set number				" show me the line numbers
-set scrolloff=5			" if I get within 5 lines of top or bottom scroll for me
+set scrolloff=3			" if I get within 5 lines of top or bottom scroll for me
 set shell=bash
 set showcmd				" show partial commands
 set showmatch			" show matching braces
@@ -107,6 +103,8 @@ set t_Co=256			" use 256 colors"
 set textwidth=80
 set textwidth=80		" lines are 80 characters long
 set title				" set the title to the filename
+set undofile			" preserve undos after vim is closed or a restart
+set undodir=~/.vim/.vimundo/
 set visualbell			" flash the screen if a bell is supposed to sound
 set wildmode=full		" see help"
 
