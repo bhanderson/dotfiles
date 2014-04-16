@@ -18,7 +18,7 @@ au VimResized * exe "normal! \<c-w>="
 
 call matchadd('ColorColumn', '\%81v', 100)
 
-colorscheme molokai
+colorscheme rainbow_neon
 
 filetype plugin on
 
@@ -68,6 +68,7 @@ map / /\v
 
 noremap j gj
 noremap k gk
+noremap za zA
 
 set autochdir
 set autoindent
@@ -76,6 +77,7 @@ set clipboard=unnamed	" set the clipboard to linux
 set encoding=utf-8		" use utf-8 as the encoding
 set fileformat=unix		" use unix style line endings
 set foldmethod=syntax
+set guifont=Monospace\ 9
 set history=50			" keep 50 commands in history"
 set hlsearch			" highlight search values"
 set ignorecase			" with smartcase
@@ -88,7 +90,7 @@ set nocompatible
 set noerrorbells		" dont ding at me
 set noswapfile			" dont use a swap file
 set nowrap				" dont wrap text in the window
-set number				" show me the line numbers
+"set number				" show me the line numbers
 set scrolloff=3			" if I get within 5 lines of top or bottom scroll for me
 set shell=bash
 set showcmd				" show partial commands
