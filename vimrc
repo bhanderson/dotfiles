@@ -92,7 +92,7 @@ set noswapfile			" dont use a swap file
 set nowrap				" dont wrap text in the window
 "set number				" show me the line numbers
 set scrolloff=3			" if I get within 5 lines of top or bottom scroll for me
-set shell=bash
+set shell=/bin/bash
 set showcmd				" show partial commands
 set showmatch			" show matching braces
 set sidescroll=1		" minimal number of colums to scroll
