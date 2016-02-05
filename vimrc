@@ -8,16 +8,14 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fugitive'
 Plug 'luochen1990/rainbow'
 Plug 'flazz/vim-colorschemes'
+Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 " End plug plugin
 set encoding=utf-8
 set fileencodings=utf-8
 
-" Remember file folds
-" autocmd BufWinEnter *.* silent loadview
-" autocmd BufWinLeave *.* mkview
-" color stuff comes first!
 au BufRead,BufNewFile *.log set filetype=messages
 set syntax=on
 set background=dark
@@ -26,7 +24,8 @@ filetype plugin indent on
 highlight ColorColumn ctermbg=black guibg=Black
 let mapleader = ","
 let g:rainbow_active = 1
-let g:airline#extensions#bufferline#enabled = 1
+let g:gitgutter_enabled = 0
+let g:jedi#usages_command = "<leader>u"
 map <leader>w :AirlineToggleWhitespace<CR>
 map ; :
 map <C-o> :NERDTreeToggle<CR>
@@ -38,13 +37,15 @@ map <F9> :TagbarToggle<CR>
 map <f10> :setlocal spell! spelllang=en_us<CR>
 map < <gv
 map > >gv
+map <leader>b :TagbarToggle<cr>
+map <leader>g :GitGutterToggle<cr>
 map <leader>kf gg=G``zz
 map <leader>kw :%s/\s\+$//<cr>
 map <leader>m <c-w><right>
 map <leader>n <c-w><left>
 map <leader>s :!sort<cr>
+"map <leader>f :cs find s
 map <leader>v <c-w><c-v>
-map <leader>b :TagbarToggle<cr>
 map <space> *Nzz
 command W :execute ':silent w !sudo tee % > /dev/null'
 set autochdir
@@ -53,7 +54,6 @@ set cc=81
 set cursorline
 set foldmethod=manual
 set foldnestmax=2
-"set guifont=Source\ Code\ Pro\ 11
 set hlsearch
 set smartcase
 set ignorecase
@@ -66,17 +66,24 @@ set nocompatible
 set nowrap
 set nowrapscan
 set swapfile
-set dir=/tmp
+set dir=/var/tmp
 set number
 set tabstop=4
 set shiftwidth=4
-set noexpandtab
+set expandtab
 set t_Co=256
-"set tags=/source/tags
-"set tags=/src/onefs.git/.git/tags
+set tags=/source/tags
 set textwidth=80
 set wildmode=longest,list,full
 set wildmenu
+
+if has('cscope')
+	cscope add /source/cscope.out /source
+"	nmap <C-@><C-@> :cs find s <C-R>=expand("<cword>")<CR><CR>
+"	nmap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\> :cs find c <C-R>=expand("<cword>")<CR><CR>
+endif
+
 " Highlight bad whitespace when not in insert as red
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
