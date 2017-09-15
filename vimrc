@@ -13,14 +13,20 @@ call plug#begin('~/.vim/plugged')
         let g:go_metalinter_enabled = ['vet', 'golint', 'errcheck', 'varcheck', 'aligncheck', 'ineffassign', 'gosimple', 'staticcheck']
         let g:go_metalinter_deadline = '10s'
     Plug 'luochen1990/rainbow'
+        let g:rainbow_active = 1
     Plug 'tpope/vim-fugitive'
     Plug 'vim-airline/vim-airline'
     Plug 'junegunn/seoul256.vim'
-    Plug 'wincent/command-t'
-        let g:CommandTFileScanner = "git"
+    Plug 'kien/ctrlp.vim'
+        let g:ctrlp_cmd = 'CtrlPMixed'
+        let g:ctrlp_map = '<c-p>'
+        let g:ctrlp_working_path_mode = 'r'
+        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files']
 call plug#end()
 set nocompatible
 let mapleader = ","
+syntax enable
+set background=dark
 colorscheme seoul256
 
 noremap ; :
@@ -83,3 +89,5 @@ au FileType go nmap <leader>gr <Plug>(go-run)
 au FileType go nmap <leader>gb <Plug>(go-build)
 au FileType go nmap <leader>gt <Plug>(go-test)
 au BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+au BufNewFile,BufRead *.ebuild setlocal noexpandtab tabstop=4 shiftwidth=4
+au FileType gitcommit set tw=70 spell
