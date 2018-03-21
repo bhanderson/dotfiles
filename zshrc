@@ -51,7 +51,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -87,11 +87,13 @@ export EDITOR='vim'
 
 export GIT=/git
 
-alias cde="cd $GIT"
+alias cdg="cd $GIT"
 alias cdl="cd $GIT/loki"
 alias cdm="cd $GIT/morpheus"
 alias cdn="cd $GIT/nightcrawler"
+alias cdo="cd $GIT/odin"
 alias subup="get_dep"
+alias gg="git grep"
 function get_dep () {
     export DEP=$(echo $PWD | cut -d/ -f3)
     export DEPFULL=$(echo $PWD | cut -d/ -f-3)
@@ -107,6 +109,8 @@ function get_dep () {
 }
 export VISUAL=vim
 export EDITOR=$VISUAL
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
 
 psgrep () {
     ps aux | grep $1 | grep -v grep

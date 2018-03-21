@@ -15,16 +15,27 @@ call plug#begin('~/.vim/plugged')
     Plug 'luochen1990/rainbow'
         let g:rainbow_active = 1
     Plug 'tpope/vim-fugitive'
+        autocmd QuickFixCmdPost *grep* cwindow
     Plug 'vim-airline/vim-airline'
     Plug 'Yggdroot/LeaderF'
+    Plug 'junegunn/seoul256.vim'
     Plug 'chriskempson/base16-vim'
         let base16colorspace=256
+    Plug 'ekalinin/Dockerfile.vim'
+    Plug 'pearofducks/ansible-vim'
+    Plug 'mhinz/vim-startify'
 call plug#end()
 set nocompatible
 let mapleader = ","
 syntax enable
 set background=dark
-colorscheme base16-default-dark
+let g:remoteSession = ($STY == "")
+if g:remoteSession
+    colorscheme seoul256
+else
+    colorscheme base16-default-dark
+endif
+
 
 noremap ; :
 noremap <c-h> <c-w>h
@@ -70,7 +81,7 @@ set softtabstop=4
 set smartindent
 set t_Co=256
 set tabstop=4
-set textwidth=80
+"set textwidth=80
 set wildmenu
 set wildmode=list:longest,full
 
@@ -89,3 +100,4 @@ au BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
 au BufNewFile,BufRead *.ebuild setlocal noexpandtab tabstop=4 shiftwidth=4
 au BufNewFile,BufRead Dockerfile.* setlocal syntax=dockerfile
 au FileType gitcommit set tw=70 spell
+au FileType make set ts=8
