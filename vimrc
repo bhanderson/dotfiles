@@ -17,13 +17,16 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
         autocmd QuickFixCmdPost *grep* cwindow
     Plug 'vim-airline/vim-airline'
-    Plug 'Yggdroot/LeaderF'
+    Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
     Plug 'junegunn/seoul256.vim'
     Plug 'chriskempson/base16-vim'
         let base16colorspace=256
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'pearofducks/ansible-vim'
-    Plug 'mhinz/vim-startify'
+    Plug 'w0rp/ale'
+        let g:ale_fixers = {'python': ['black']}
+        let g:ale_fix_on_save = 0
+    Plug 'wannesm/wmgraphviz.vim'
 call plug#end()
 set nocompatible
 let mapleader = ","
@@ -57,9 +60,8 @@ noremap <leader>s :!sort<cr>
 vnoremap < <gv
 vnoremap > >gv
 
-set autochdir
+"set autochdir
 set autoindent
-set cc=80
 set cursorcolumn
 set cursorline
 set dir=/var/tmp
@@ -67,8 +69,8 @@ set expandtab
 set hlsearch
 set ignorecase
 set laststatus=2
-set list
 set listchars=tab:▸\ ,eol:¶,extends:❯,precedes:❮,trail:·
+set list
 set path+=**
 set shiftwidth=4
 set nowrap
@@ -92,6 +94,9 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+" Only match longer lines
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 
 au FileType go nmap <leader>gr <Plug>(go-run)
 au FileType go nmap <leader>gb <Plug>(go-build)

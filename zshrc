@@ -2,7 +2,11 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/bhanderson/.oh-my-zsh
+export ZSH=/home/bhanderson/.oh-my-zsh
+
+export PATH=/usr/lib/go-1.10/bin:$PATH
+export PATH=/home/bhanderson/.local/bin:$PATH
+export ANSIBLE_NOCOWS=1
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -69,6 +73,7 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='mvim'
 # fi
 export EDITOR='vim'
+#export GOPATH='/home/bhanderson/git/go:/git/phoenix/vendor/golibs:/git/extrahop/go'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -87,26 +92,19 @@ export EDITOR='vim'
 
 export GIT=/git
 
+alias vimrc="vim ~/.vimrc"
+alias zshrc="vim ~/.zshrc"
+alias cat="bat"
 alias cdg="cd $GIT"
-alias cdl="cd $GIT/loki"
-alias cdm="cd $GIT/morpheus"
-alias cdn="cd $GIT/nightcrawler"
-alias cdo="cd $GIT/odin"
-alias subup="get_dep"
+alias cdl="cd $GIT/depot/loki"
+alias cdm="cd $GIT/depot/morpheus"
+alias cdn="cd $GIT/depot/nightcrawler"
+alias cdo="cd $GIT/depot/odin"
+alias cdp="cd $GIT/depot/phoenix"
+alias cdq="cd $GIT/depot/quicksilver"
+alias cdr="cd $GIT/depot/rogue"
+alias subup="git submodule update"
 alias gg="git grep"
-function get_dep () {
-    export DEP=$(echo $PWD | cut -d/ -f3)
-    export DEPFULL=$(echo $PWD | cut -d/ -f-3)
-    export BASEDIR=$(echo $PWD | cut -d/ -f2)
-    if [ $BASEDIR = "git" ]; then
-        if [ $DEP ]; then
-            echo 'in depot' $DEP 'updating submodules'
-            $DEPFULL/build/tools/submodules-update
-            return 0
-        fi
-    fi
-    echo 'Not in depot, exiting..'
-}
 export VISUAL=vim
 export EDITOR=$VISUAL
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
