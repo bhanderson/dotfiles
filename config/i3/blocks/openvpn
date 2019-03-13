@@ -1,0 +1,14 @@
+#!/bin/bash
+
+ICON=
+
+NAME="$(nmcli -t connection show --active | grep vpn | cut -d':' -f1)"
+if [ -z "$NAME" ]; then
+    NAME="down"
+fi
+
+COLOR="#a3be8c"
+
+echo "${ICON} ${NAME}"
+echo "HIHI"
+echo "${COLOR}"

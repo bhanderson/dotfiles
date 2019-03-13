@@ -18,9 +18,7 @@ call plug#begin('~/.vim/plugged')
         autocmd QuickFixCmdPost *grep* cwindow
     Plug 'vim-airline/vim-airline'
     Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-    Plug 'junegunn/seoul256.vim'
-    Plug 'chriskempson/base16-vim'
-        let base16colorspace=256
+    Plug 'morhetz/gruvbox'
     Plug 'ekalinin/Dockerfile.vim'
     Plug 'pearofducks/ansible-vim'
     Plug 'w0rp/ale'
@@ -32,12 +30,7 @@ set nocompatible
 let mapleader = ","
 syntax enable
 set background=dark
-let g:remoteSession = ($STY == "")
-if g:remoteSession
-    colorscheme seoul256
-else
-    colorscheme base16-default-dark
-endif
+colorscheme gruvbox
 
 
 noremap ; :
@@ -86,6 +79,11 @@ set tabstop=4
 "set textwidth=80
 set wildmenu
 set wildmode=list:longest,full
+
+set undofile
+set undodir=$HOME/.vim/undo
+set undolevels=1000
+set undoreload=10000
 
 " highlight bad whitespace
 highlight ExtraWhitespace ctermbg=red guibg=red
